@@ -1,0 +1,11 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -DL -O11111114 -fo8 -N"I:\Varsity Resources\Tarun_Sir\Code\16X2_8Bit_LCD_Interfacing\Code\LCD_Manual_Command.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"I:\Varsity Resources\Tarun_Sir\Code\16X2_8Bit_LCD_Interfacing\Code\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" "LCD_Manual_Command.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	LCD_Manual_Command.c
+diagnostics: 52	123	Compiled Successfully	LCD_Manual_Command.c
+diagnostics: 0	127	All files Compiled in 47 ms	 
+hint: 0	1144	Used RAM (bytes): 45 (13%)  Free RAM (bytes): 307 (87%)	Used RAM (bytes): 45 (13%)  Free RAM (bytes): 307 (87%)
+hint: 0	1144	Used ROM (program words): 173 (2%)  Free ROM (program words): 8019 (98%)	Used ROM (program words): 173 (2%)  Free ROM (program words): 8019 (98%)
+diagnostics: 0	125	Project Linked Successfully	LCD_Manual_Command.mcppi
+diagnostics: 0	128	Linked in 15 ms	 
+diagnostics: 0	129	Project 'LCD_Manual_Command.mcppi' completed: 78 ms	 
+diagnostics: 0	103	Finished successfully: 19 Sep 2022, 16:16:04	LCD_Manual_Command.mcppi

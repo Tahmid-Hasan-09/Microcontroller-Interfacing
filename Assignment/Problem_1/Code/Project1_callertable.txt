@@ -1,0 +1,7 @@
+main
+	__CC2DW
+		____DoICP
+	pin_configuration
+	display_7segment
+		Div_16x16_S
+			Div_16x16_S_L

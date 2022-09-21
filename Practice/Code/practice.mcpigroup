@@ -1,0 +1,7 @@
+[PROJECTS]
+Count=3
+Project0=..\..\Temperature_Sensor_Interfacing\Code\tem_sensor.mcppi
+Project1=..\..\Assignment\Problem_1\Code\Project1.mcppi
+Project2=practice.mcppi
+[ActiveProject]
+Index=2

@@ -1,0 +1,11 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -DL -O11111114 -fo8 -N"I:\Varsity Resources\Tarun_Sir\Code\Assignment\Problem_3\Code\Gas_Smoke_Leakage.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"I:\Varsity Resources\Tarun_Sir\Code\Assignment\Problem_3\Code\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" "Gas_Smoke_Leakage.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_Conversions.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	Gas_Smoke_Leakage.c
+diagnostics: 107	123	Compiled Successfully	Gas_Smoke_Leakage.c
+diagnostics: 0	127	All files Compiled in 47 ms	 
+hint: 0	1144	Used RAM (bytes): 91 (26%)  Free RAM (bytes): 261 (74%)	Used RAM (bytes): 91 (26%)  Free RAM (bytes): 261 (74%)
+hint: 0	1144	Used ROM (program words): 804 (10%)  Free ROM (program words): 7388 (90%)	Used ROM (program words): 804 (10%)  Free ROM (program words): 7388 (90%)
+diagnostics: 0	125	Project Linked Successfully	Gas_Smoke_Leakage.mcppi
+diagnostics: 0	128	Linked in 16 ms	 
+diagnostics: 0	129	Project 'Gas_Smoke_Leakage.mcppi' completed: 94 ms	 
+diagnostics: 0	103	Finished successfully: 21 Sep 2022, 23:01:14	Gas_Smoke_Leakage.mcppi

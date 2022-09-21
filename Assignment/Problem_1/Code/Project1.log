@@ -1,0 +1,11 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -DL -O11111114 -fo8 -N"I:\Varsity Resources\Tarun_Sir\Code\Assignment\Problem_1\Code\Project1.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"I:\Varsity Resources\Tarun_Sir\Code\Assignment\Problem_1\Code\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" "Project1.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_LcdConsts.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	Project1.c
+diagnostics: 108	123	Compiled Successfully	Project1.c
+diagnostics: 0	127	All files Compiled in 62 ms	 
+hint: 0	1144	Used RAM (bytes): 24 (7%)  Free RAM (bytes): 328 (93%)	Used RAM (bytes): 24 (7%)  Free RAM (bytes): 328 (93%)
+hint: 0	1144	Used ROM (program words): 443 (5%)  Free ROM (program words): 7749 (95%)	Used ROM (program words): 443 (5%)  Free ROM (program words): 7749 (95%)
+diagnostics: 0	125	Project Linked Successfully	Project1.mcppi
+diagnostics: 0	128	Linked in 16 ms	 
+diagnostics: 0	129	Project 'Project1.mcppi' completed: 94 ms	 
+diagnostics: 0	103	Finished successfully: 21 Sep 2022, 14:18:08	Project1.mcppi

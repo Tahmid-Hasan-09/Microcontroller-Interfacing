@@ -1,0 +1,11 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -DL -O11111114 -fo20 -N"I:\Varsity Resources\Tarun_Sir\Code\LED_Blinking\LED_Blinking.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"I:\Varsity Resources\Tarun_Sir\Code\LED_Blinking\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" "LED_Blinking.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	LED_Blinking.c
+diagnostics: 11	123	Compiled Successfully	LED_Blinking.c
+diagnostics: 0	127	All files Compiled in 63 ms	 
+hint: 0	1144	Used RAM (bytes): 2 (1%)  Free RAM (bytes): 350 (99%)	Used RAM (bytes): 2 (1%)  Free RAM (bytes): 350 (99%)
+hint: 0	1144	Used ROM (program words): 35 (1%)  Free ROM (program words): 8157 (99%)	Used ROM (program words): 35 (1%)  Free ROM (program words): 8157 (99%)
+diagnostics: 0	125	Project Linked Successfully	LED_Blinking.mcppi
+diagnostics: 0	128	Linked in 15 ms	 
+diagnostics: 0	129	Project 'LED_Blinking.mcppi' completed: 93 ms	 
+diagnostics: 0	103	Finished successfully: 13 Sep 2022, 23:57:31	LED_Blinking.mcppi

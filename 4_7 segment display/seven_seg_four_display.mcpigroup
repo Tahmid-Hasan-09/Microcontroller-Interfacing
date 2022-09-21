@@ -1,0 +1,6 @@
+[PROJECTS]
+Count=2
+Project0=..\MultiDisplay\multidisplay.mcppi
+Project1=..\7 segment Button Press\seven_seg_four_display.mcppi
+[ActiveProject]
+Index=1

@@ -29,7 +29,6 @@ _lcd_third_row
 _lcd_turn_off
 _lcd_turn_on
 _lcd_underline_on
-a
 ackdt
 ackdt_bit
 acken
@@ -57,7 +56,6 @@ adon
 adon_bit
 adresh
 adresl
-b
 b0
 b1
 b2
@@ -131,7 +129,8 @@ ccpr1l
 ccpr2
 ccpr2h
 ccpr2l
-checkresponse
+check_response
+checksum
 chs0
 chs0_bit
 chs1
@@ -202,6 +201,8 @@ delay_5ms
 delay_80us
 delay_8ms
 delay_cyc
+dht11_pin
+dht11_pin_direction
 div_16x16_s
 div_16x16_s_l
 div_16x16_u
@@ -253,7 +254,7 @@ hextolong
 hextolongint
 hextoshort
 hextoword
-i
+humidity
 ibf
 ibf_bit
 ibf_trise_bit
@@ -302,6 +303,7 @@ longword2double
 longwordtohex
 longwordtostr
 longwordtostrwithzeros
+loop
 ltrim
 main
 memchr
@@ -316,7 +318,6 @@ mul_32x32_s
 mul_32x32_u
 mul_8x8_s
 mul_8x8_u
-mytext
 not_a
 not_a_bit
 not_address
@@ -504,12 +505,12 @@ re1
 re1_bit
 re2
 re2_bit
+read_data
 read_write
 read_write_bit
-readdata
 res032
-rh1
-rh2
+rh_byte1
+rh_byte2
 rp0
 rp0_bit
 rp1
@@ -561,7 +562,7 @@ sspm3_bit
 sspov
 sspov_bit
 sspstat
-startsignal
+start_signal
 status
 str_cut_chr
 str_cut_left
@@ -591,10 +592,11 @@ strtolongint
 strtoshort
 strtoword
 sub_32x32_fp
-sum
 swap
 sync
 sync_bit
+t_byte1
+t_byte2
 t0cs
 t0cs_bit
 t0ie
@@ -603,7 +605,6 @@ t0if
 t0if_bit
 t0se
 t0se_bit
-t1
 t1ckps0
 t1ckps0_bit
 t1ckps1
@@ -615,13 +616,12 @@ t1oscen
 t1oscen_bit
 t1sync
 t1sync_bit
-t2
 t2ckps0
 t2ckps0_bit
 t2ckps1
 t2ckps1_bit
 t2con
-text
+temperature
 tmr0
 tmr0ie
 tmr0ie_bit

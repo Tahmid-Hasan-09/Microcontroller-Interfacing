@@ -29,7 +29,7 @@ void main() {
              if(counting_by_sensor == 99){
                 counting_by_sensor = 0; // Set 0 if equals 99
              }
-            //Comaprison between selected number & counting by sensor
+            //Comparison between selected number & counting by sensor
             if(selected_number == counting_by_sensor){
               while(PORTC.f7 == 1 ){
                  PORTD.f5 = 0;

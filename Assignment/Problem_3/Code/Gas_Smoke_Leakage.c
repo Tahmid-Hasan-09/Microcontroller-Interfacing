@@ -1,116 +1,160 @@
 /****Code By Tahmid Hasan-170109 *****/
+
+// Interfacing DHT11 sensor and gas/smoke leakage with PIC16F887 mikroC code
+
 // LCD module connections
- sbit LCD_RS at RB5_bit;
- sbit LCD_EN at RB4_bit;
- sbit LCD_D4 at RB3_bit;
- sbit LCD_D5 at RB2_bit;
- sbit LCD_D6 at RB1_bit;
- sbit LCD_D7 at RB0_bit;
- sbit LCD_RS_Direction at TRISB5_bit;
- sbit LCD_EN_Direction at TRISB4_bit;
- sbit LCD_D4_Direction at TRISB3_bit;
- sbit LCD_D5_Direction at TRISB2_bit;
- sbit LCD_D6_Direction at TRISB1_bit;
- sbit LCD_D7_Direction at TRISB0_bit;
- // End LCD module connections
- char *text,mytext[4];
- unsigned char  a = 0, b = 0,i = 0,t1 = 0,t2 = 0,
-               rh1 = 0,rh2 = 0,sum = 0;
- void StartSignal(){
-     TRISD.F2 = 0;    //Configure RD2 as output
-     PORTD.F2 = 0;    //RD2 sends 0 to the sensor
-     delay_ms(18);
-     PORTD.F2 = 1;    //RD2 sends 1 to the sensor
-     delay_us(30);
-     TRISD.F2 = 1;    //Configure RD2 as input
+sbit LCD_RS at RD0_bit;
+sbit LCD_EN at RD1_bit;
+sbit LCD_D4 at RD2_bit;
+sbit LCD_D5 at RD3_bit;
+sbit LCD_D6 at RD4_bit;
+sbit LCD_D7 at RD5_bit;
+sbit LCD_RS_Direction at TRISD0_bit;
+sbit LCD_EN_Direction at TRISD1_bit;
+sbit LCD_D4_Direction at TRISD2_bit;
+sbit LCD_D5_Direction at TRISD3_bit;
+sbit LCD_D6_Direction at TRISD4_bit;
+sbit LCD_D7_Direction at TRISD5_bit;
+// End LCD module connections
+
+// DHT11 sensor connection (here data pin is connected to pin RB0)
+sbit DHT11_PIN at RB0_bit;
+sbit DHT11_PIN_Direction at TRISB0_bit;
+// End DHT11 sensor connection
+
+char temperature[] = "Temp = 00.0 C  ";
+char humidity[] = "RH   = 00.0 %  ";
+unsigned short T_byte1, T_byte2, RH_byte1, RH_byte2, CheckSum ;
+int loop;
+
+void Start_Signal(void) {
+  DHT11_PIN_Direction = 0;                    // Configure connection pin as output
+  DHT11_PIN = 0;                              // Connection pin output low
+  delay_ms(25);                               // Wait 25 ms
+  DHT11_PIN = 1;                              // Connection pin output high
+  delay_us(25);                               // Wait 25 us
+  DHT11_PIN_Direction = 1;                    // Configure connection pin as input
+}
+
+unsigned short Check_Response() {
+  TMR1H = 0;                                  // Reset Timer1
+  TMR1L = 0;
+  TMR1ON_bit = 1;                             // Enable Timer1 module
+  while(!DHT11_PIN && TMR1L < 100);           // Wait until DHT11_PIN becomes high (cheking of 80µs low time response)
+  if(TMR1L > 99)                              // If response time > 99µS  ==> Response error
+    return 0;                                 // Return 0 (Device has a problem with response)
+  else {    TMR1H = 0;                        // Reset Timer1
+    TMR1L = 0;
+    while(DHT11_PIN && TMR1L < 100);          // Wait until DHT11_PIN becomes low (cheking of 80µs high time response)
+    if(TMR1L > 99)                            // If response time > 99µS  ==> Response error
+      return 0;                               // Return 0 (Device has a problem with response)
+    else
+      return 1;                               // Return 1 (response OK)
   }
- void CheckResponse(){
-     a = 0;
-     delay_us(40);
-     if (PORTD.F2 == 0){
-     delay_us(80);
-     if (PORTD.F2 == 1)   a = 1;   delay_us(40);}
- }
- void ReadData(){
-     for(b=0;b<8;b++){
-       while(!PORTD.F2); //Wait until PORTD.F2 goes HIGH
-       delay_us(30);
-       if(PORTD.F2 == 0)    i&=~(1<<(7-b));  //Clear bit (7-b)
-       else{
-            i|= (1<<(7-b));               //Set bit (7-b)
-            while(PORTD.F2); //Wait until PORTD.F2 goes LOW
-       }
-     }
- }
- void main() {
- //Configuration for gas leakage
+}
+
+unsigned short Read_Data(unsigned short* dht_data) {
+  short i;
+  *dht_data = 0;
+  for(i = 0; i < 8; i++){
+    TMR1H = 0;                                // Reset Timer1
+    TMR1L = 0;
+    while(!DHT11_PIN)                         // Wait until DHT11_PIN becomes high
+      if(TMR1L > 100) {                       // If low time > 100  ==>  Time out error (Normally it takes 50µs)
+        return 1;
+      }
+    TMR1H = 0;                                // Reset Timer1
+    TMR1L = 0;
+    while(DHT11_PIN)                          // Wait until DHT11_PIN becomes low
+      if(TMR1L > 100) {                       // If high time > 100  ==>  Time out error (Normally it takes 26-28µs for 0 and 70µs for 1)
+        return 1;                             // Return 1 (timeout error)
+      }
+     if(TMR1L > 50)                           // If high time > 50  ==>  Sensor sent 1
+       *dht_data |= (1 << (7 - i));           // Set bit (7 - i)
+  }
+  return 0;                                   // Return 0 (data read OK)
+}
+
+void main() {
+
+  //Configuration for gas leakage
    trisd.f7 = 1;
-   TRISc = 0x00;
-   PORTc = 0x00;
-  // Configuration for temperature and humidity
-   TRISB = 0;        //Configure PORTB as output
-   PORTB = 0;        //Initial value of PORTB
-   Lcd_Init();
-   while(1){
-       // gas leakage
+   TRISb.f1 = 0;
+   TRISb.f2 = 0;
+   PORTb.f1 = 0;
+   PORTb.f2 = 0;
+   
+  T1CON = 0x10;                    // Set Timer1 clock source to internal with 1:2 prescaler (Timer1 clock = 1MHz)
+  TMR1H = 0;                       // Reset Timer1
+  TMR1L = 0;
+  Lcd_Init();                      // Initialize LCD module
+  Lcd_Cmd(_LCD_CURSOR_OFF);        // cursor off
+  Lcd_Cmd(_LCD_CLEAR);             // clear LCD
+  while(1) {
+  
+  // gas leakage
        if(PORTD.f7 == 1){
-           Portc.f7 = 1;
+         for(loop = 0;loop<10;loop++){
+           Portb.f2 = 1;
+           Portb.f1 = 1;
            delay_ms(100);
-           Portc.f7 = 0;
-           delay_ms(10);
-           Portc.f0 = 1;
+           Portb.f2 = 0;
+           Portb.f1 = 0;
+           delay_ms(100);
+           Portb.f2 = 1;
+           Portb.f1 = 1;
+           Portb.f2 = 0;
+           Portb.f1 = 0;
+         }
        }
        if(PORTD.f7 == 0){
-           Portc.f0 = 0;
-           Portc.f7 = 0;
+           Portb.f1 = 0;
+           Portb.f2 = 0;
        }
        // gas leakage end
-       Lcd_Cmd(_LCD_CURSOR_OFF);        // cursor off
-       Lcd_Cmd(_LCD_CLEAR);             // clear LCD
-       StartSignal();
-       CheckResponse();
-       if(a == 1){
-          ReadData();
-          rh1 =i;
-          ReadData();
-          rh2 =i;
-          ReadData();
-          t1 =i;
-          ReadData();
-          t2 =i;
-          ReadData();
-          sum = i;
-          if(sum == rh1+rh2+t1+t2){
-              text = "Temp:  .0C";
-              Lcd_Out(1,6,text);
-              text = "Humidity:  .0%";
-              Lcd_Out(2,2,text);
-              ByteToStr(t1,mytext);
-              Lcd_Out(1,11,Ltrim(mytext));
-              ByteToStr(rh1,mytext);
-              Lcd_Out(2,11,Ltrim(mytext));
-          }
-          else{
-            Lcd_Cmd(_LCD_CURSOR_OFF);        // cursor off
-            Lcd_Cmd(_LCD_CLEAR);             // clear LCD
-            text = "Check sum error";
-            Lcd_Out(1,1,text);}
+
+    Start_Signal();                // Send start signal to the sensor
+
+    if(Check_Response()) {         // Check if there is a response from sensor (If OK start reding humidity and temperature data)
+    // Read (and save) data from the DHT11 sensor and check time out errors
+      if(Read_Data(&RH_byte1) || Read_Data(&RH_byte2) || Read_Data(&T_byte1) || Read_Data(&T_byte2) || Read_Data(&Checksum)) {
+        Lcd_Cmd(_LCD_CLEAR);                               // clear LCD
+        lcd_out(1, 5, "Time out!");                        // Display "Time out!"
+      }
+      else {                                               // If there is no time out error
+        if(CheckSum == ((RH_Byte1 + RH_Byte2 + T_Byte1 + T_Byte2) & 0xFF)) {
+        // If there is no checksum error
+          temperature[7]  = T_Byte1/10  + 48;
+          temperature[8]  = T_Byte1%10  + 48;
+          temperature[10] = T_Byte2/10  + 48;
+          humidity[7]     = RH_Byte1/10 + 48;
+          humidity[8]     = RH_Byte1%10 + 48;
+          humidity[10]    = RH_Byte2/10 + 48;
+          temperature[11] = 223;                      // Put degree symbol (°)
+          lcd_out(1, 1, temperature);
+          lcd_out(2, 1, humidity);
         }
+        // If there is a checksum error
         else {
-            text="No response";
-            Lcd_Out(1,3,text);
-            text = "from the sensor";
-            Lcd_Out(2,1,text);
+          Lcd_Cmd(_LCD_CLEAR);                        // clear LCD
+          lcd_out(1, 1, "Checksum Error!");
         }
-        delay_ms(200);
-   }
+      }
+    }
+    // If there is a response (from the sensor) problem
+    else {
+      Lcd_Cmd(_LCD_CLEAR);                 // clear LCD
+      lcd_out(1, 3, "No response");
+      lcd_out(2, 1, "from the sensor");
+    }
+
+    TMR1ON_bit = 0;                        // Disable Timer1 module
+    delay_ms(1000);                        // Wait 1 second
+
   }
-
-
-
-
-
-
-
-
-
+}
+// End of code
+  
+  
+  
+  

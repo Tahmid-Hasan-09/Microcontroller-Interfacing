@@ -1,4 +1,4 @@
-#line 1 "I:/Varsity Resources/Tarun_Sir/Code/16X2_LCD_Interfacing/Code/LCD.c"
+#line 1 "I:/Varsity Resources/Tarun_Sir/Code/16X2_4Bit_LCD_Interfacing/Code/LCD.c"
 
 sbit LCD_RS at RB0_bit;
 sbit LCD_EN at RB1_bit;
@@ -29,7 +29,7 @@ void main() {
  Delay_ms(100);
  lcd_cmd(_lcd_clear);
  Lcd_Out_Cp("Welcome");
- Delay_ms(1000);
+ Delay_ms(100);
  Lcd_Out(2, 3, "Tahmid Hasan");
  Delay_ms(1000);
  }

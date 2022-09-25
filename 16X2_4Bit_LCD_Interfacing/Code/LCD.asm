@@ -53,12 +53,12 @@ L_main2:
 	MOVLW      ?lstr1_LCD+0
 	MOVWF      FARG_Lcd_Out_CP_text+0
 	CALL       _Lcd_Out_CP+0
-;LCD.c,31 :: 		Delay_ms(1000);
-	MOVLW      11
+;LCD.c,31 :: 		Delay_ms(100);
+	MOVLW      2
 	MOVWF      R11+0
-	MOVLW      38
+	MOVLW      4
 	MOVWF      R12+0
-	MOVLW      93
+	MOVLW      186
 	MOVWF      R13+0
 L_main3:
 	DECFSZ     R13+0, 1
@@ -67,7 +67,6 @@ L_main3:
 	GOTO       L_main3
 	DECFSZ     R11+0, 1
 	GOTO       L_main3
-	NOP
 	NOP
 ;LCD.c,32 :: 		Lcd_Out(2, 3, "Tahmid Hasan");
 	MOVLW      2

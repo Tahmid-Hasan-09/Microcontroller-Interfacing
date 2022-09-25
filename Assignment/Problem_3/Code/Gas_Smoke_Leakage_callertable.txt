@@ -8,9 +8,9 @@ main
 		Delay_1us
 		Delay_5500us
 		Delay_50us
-	StartSignal
-	CheckResponse
-	ReadData
+	Start_Signal
+	Check_Response
+	Read_Data
 	Lcd_Out
 		Lcd_Cmd
 			Delay_1us
@@ -21,6 +21,4 @@ main
 				Delay_1us
 				Delay_5500us
 				Delay_50us
-	ByteToStr
-		Div_8X8_U
-	Ltrim
+	Div_8X8_U

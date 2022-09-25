@@ -39,12 +39,12 @@ L_main0:
 ;seven_segmentpushbtn.c,10 :: 		if(PORTD.F0 == 1){
 	BTFSS      PORTD+0, 0
 	GOTO       L_main2
-;seven_segmentpushbtn.c,11 :: 		delay_ms(300);
-	MOVLW      4
+;seven_segmentpushbtn.c,11 :: 		delay_ms(200);
+	MOVLW      3
 	MOVWF      R11+0
-	MOVLW      12
+	MOVLW      8
 	MOVWF      R12+0
-	MOVLW      51
+	MOVLW      119
 	MOVWF      R13+0
 L_main3:
 	DECFSZ     R13+0, 1
@@ -53,8 +53,6 @@ L_main3:
 	GOTO       L_main3
 	DECFSZ     R11+0, 1
 	GOTO       L_main3
-	NOP
-	NOP
 ;seven_segmentpushbtn.c,12 :: 		if(PORTD.F0 == 1){
 	BTFSS      PORTD+0, 0
 	GOTO       L_main4
@@ -84,12 +82,12 @@ L_main2:
 ;seven_segmentpushbtn.c,18 :: 		if(PORTD.F1 == 1){
 	BTFSS      PORTD+0, 1
 	GOTO       L_main6
-;seven_segmentpushbtn.c,19 :: 		delay_ms(300);
-	MOVLW      4
+;seven_segmentpushbtn.c,19 :: 		delay_ms(200);
+	MOVLW      3
 	MOVWF      R11+0
-	MOVLW      12
+	MOVLW      8
 	MOVWF      R12+0
-	MOVLW      51
+	MOVLW      119
 	MOVWF      R13+0
 L_main7:
 	DECFSZ     R13+0, 1
@@ -98,8 +96,6 @@ L_main7:
 	GOTO       L_main7
 	DECFSZ     R11+0, 1
 	GOTO       L_main7
-	NOP
-	NOP
 ;seven_segmentpushbtn.c,20 :: 		if(PORTD.F1 == 1){
 	BTFSS      PORTD+0, 1
 	GOTO       L_main8

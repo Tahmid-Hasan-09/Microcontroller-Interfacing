@@ -1,4 +1,4 @@
-#line 1 "I:/Varsity Resources/Tarun_Sir/Code/Seven_Segment_with_Push_Button/Code/seven_segmentpushbtn.c"
+#line 1 "I:/Varsity Resources/Tarun_Sir/Code/7_Segment_with_Push_Button/Code/seven_segmentpushbtn.c"
 void main() {
  char segment[10] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7C,0x07,0x7F,0x6F};
  int i = 0;
@@ -9,7 +9,7 @@ void main() {
 
  while(1){
  if(PORTD.F0 == 1){
- delay_ms(300);
+ delay_ms(200);
  if(PORTD.F0 == 1){
  if(i<9){
  i++;
@@ -17,7 +17,7 @@ void main() {
  }
  }
  if(PORTD.F1 == 1){
- delay_ms(300);
+ delay_ms(200);
  if(PORTD.F1 == 1){
  if(i>0){
  i--;

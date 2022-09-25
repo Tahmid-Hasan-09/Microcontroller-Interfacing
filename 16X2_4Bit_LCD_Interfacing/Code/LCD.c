@@ -28,7 +28,7 @@ void main() {
       Delay_ms(100);
       lcd_cmd(_lcd_clear); //Clear display
       Lcd_Out_Cp("Welcome"); //Prints text on Lcd at current cursor position.
-      Delay_ms(1000);
+      Delay_ms(100);
       Lcd_Out(2, 3, "Tahmid Hasan");
       Delay_ms(1000);
     }

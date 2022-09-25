@@ -8,7 +8,7 @@ void main() {
 
     while(1){
        if(PORTD.F0 == 1){
-          delay_ms(300);
+          delay_ms(200);
           if(PORTD.F0 == 1){
               if(i<9){
                i++;
@@ -16,7 +16,7 @@ void main() {
           }
        }
        if(PORTD.F1 == 1){
-           delay_ms(300);
+           delay_ms(200);
            if(PORTD.F1 == 1){
                if(i>0){
                 i--;

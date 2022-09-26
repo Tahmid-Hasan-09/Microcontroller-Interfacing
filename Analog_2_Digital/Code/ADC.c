@@ -20,7 +20,7 @@ void main() {
   float analog_volatage;
   float adc_value = 0;
   ADC_Init();  // Initialize ADC module with default settings
-  
+
   TRISB = 0x00;
   TRISA.f0 = 1;
 
@@ -29,10 +29,10 @@ void main() {
   Lcd_Cmd(_LCD_CLEAR);
   while(1){
     adc_value = ADC_Read(0);  // Read analog value from channel 0
-    analog_volatage = adc_value * 5 / 1023 ;
+    analog_volatage = adc_value * 5 / 1023 ; //10 bit adc used,5/1023 = resolution or,possible number of digital levels
     //FloatToStr(adc_value, voltage_txt);
     FloatToStr_FixLen(analog_volatage, voltage_txt, 4);
-    
+
     Lcd_Out(1, 3, "Analog Voltage:");
     Lcd_Cmd(_LCD_SECOND_ROW);
     Lcd_Out(2, 8, voltage_txt);

@@ -23,7 +23,7 @@ void main() {
 
    TRISB = 0x00;
    TRISA.f0 = 1;
-   
+
    adcon1=0x80;
    ADC_Init(); // Initialize ADC module with default settings
    Delay_ms(100);
@@ -31,7 +31,7 @@ void main() {
    Delay_ms(100);
 
    Lcd_Cmd(_LCD_CURSOR_OFF); // Cursor off
-   
+
    Lcd_Out(1,1,"Learning");
    Lcd_Out(2,2,"Microcontrollers");
    Delay_ms(200);
@@ -40,8 +40,7 @@ void main() {
    while(1){
        adc_value = ADC_Read(0);  // Read analog value from channel 0
        backtoanalog_value = (adc_value*5 / 1023);//10bit,resolution=5/1023
-       temperature = backtoanalog_value*100; // 1 degree = 10mv
-       //Delay_ms(50);
+       temperature = backtoanalog_value*100; // 1 degree = 10mv -> 1volt = 100 degree
 
        FloatToStr_FixLen(temperature, display, 4);
        //Delay_ms(20);

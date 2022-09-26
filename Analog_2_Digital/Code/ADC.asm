@@ -25,7 +25,7 @@ L_main0:
 	CLRF       FARG_ADC_Read_channel+0
 	CALL       _ADC_Read+0
 	CALL       _word2double+0
-;ADC.c,32 :: 		analog_volatage = adc_value * 5 / 1023 ;
+;ADC.c,32 :: 		analog_volatage = adc_value * 5 / 1023 ; //10 bit adc used,5/1023 = resolution or,possible number of digital levels
 	MOVLW      0
 	MOVWF      R4+0
 	MOVLW      0
